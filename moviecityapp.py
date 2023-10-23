@@ -24,6 +24,27 @@ def get_movie_details(movie_name, api_key):
             print(f"Popularity: {movie['popularity']}")
             print(f"Adult: {movie['adult']}")
 
+            # Constructing the URL for the poster
+            base_image_url = "https://image.tmdb.org/t/p/"
+            image_size = "w500"
+            poster_url = base_image_url + image_size + movie['poster_path']
+            print(f"Poster URL: {poster_url}")
+
+            # Fetching actor details
+            movie_id = movie['id']
+            credits_url = f"https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key={api_key}"
+            credits_response = requests.get(credits_url)
+
+            if credits_response.status_code == 200:
+                credits_data = credits_response.json()
+                cast = credits_data['cast']
+
+                # Extract and print names of the first few actors
+                actor_names = [actor['name'] for actor in cast[:5]]
+                print(f"Actors: {', '.join(actor_names)}")
+            else:
+                print("Failed to retrieve actor details!")
+
         else:
             print("No movies found!")
     else:
