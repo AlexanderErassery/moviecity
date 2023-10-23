@@ -31,7 +31,8 @@ def get_movie_details(movie_name, api_key):
 
 if __name__ == "__main__":
     # Note: Replace YOUR_API_KEY with the actual API key
-    api_key = "7a4ae0188eaa7ed525756d2fad046aa1"
+    # Get api_key by registering on https://www.themoviedb.org/login
+    api_key = "YOUR_API_KEY"
     
     # Get the movie name from the user
     movie_name = input("Enter the name of the movie: ")
